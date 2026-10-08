@@ -1,4 +1,4 @@
-# Test Plan (week 8)
+# Test Plan
 
 1. Purpose and scope
 2. Test items: in scope, out of scope

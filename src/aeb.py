@@ -15,5 +15,5 @@ SENSOR_TIMEOUT_MS = 200
 
 def decide(speed_kph, obstacle_m, sensor_age_ms):
     """REQ-01~03, 05. obstacle_m is None when nothing is detected."""
-    # TODO(week 4): implement against requirements/aeb_requirements.md
+    # TODO: implement against requirements/aeb_requirements.md
     raise NotImplementedError

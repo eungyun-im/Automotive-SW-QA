@@ -1,4 +1,4 @@
-# LLM-assisted test case review (week 8)
+# LLM-assisted test case review
 
 TODO: generate TC drafts from REQ-01 and REQ-03 with an LLM, then review them.
 

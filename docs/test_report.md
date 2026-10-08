@@ -1,4 +1,4 @@
-# Test Report (week 8)
+# Test Report
 
 1. Summary: release verdict in one line
 2. Execution results: total / pass / fail / blocked / not run

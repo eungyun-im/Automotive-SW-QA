@@ -5,7 +5,7 @@ DIDS = {0x0101: [0x00, 0x28]}  # vehicle speed, 40 km/h
 
 
 def main():
-    # TODO(week 6): 0x22 ReadDataByIdentifier, NRC 0x11 / 0x13 / 0x31
+    # TODO: 0x22 ReadDataByIdentifier, NRC 0x11 / 0x13 / 0x31
     raise NotImplementedError
 
 

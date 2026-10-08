@@ -1,4 +1,4 @@
-# Verification levels (week 7)
+# Verification levels
 
 TODO: what each level verifies, and where this project sits.
 

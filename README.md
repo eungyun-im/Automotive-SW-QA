@@ -1,80 +1,61 @@
 # automotive-sw-qa
 
-Automotive Software QA study project — 8 weeks, covering the full QA lifecycle for an AEB-lite system.
+End-to-end software QA for an automotive safety function, from requirements to an automated regression suite.
 
 ![tests](https://github.com/eungyun-im/automotive-sw-qa/actions/workflows/test.yml/badge.svg)
 
-## What this is
+## Overview
 
-An end-to-end QA portfolio built around **AEB-lite** (Automatic Emergency Braking, simplified):  
-brake at ≥30 km/h with obstacle within 20 m, fault on sensor timeout >200 ms.
+The system under test is **AEB-lite**, a simplified Automatic Emergency Braking decision function:
 
-The system serves as a single thread through every QA discipline in the curriculum —  
-requirements traceability → test case design → defect tracking → pytest + CI →  
-API testing → CAN/UDS → SW testing (MIL/SIL/HIL) → AI model QA.
+- Brake when speed is at least 30 km/h and an obstacle is within 20 m.
+- Report a fault when sensor data is 200 ms old or older.
+- Report a fault when speed is outside 0 to 250 km/h.
 
-## Scope
+Every artifact in this repository traces back to those requirements: the test cases, the automated tests, the defect reports, and the final test report.
 
-| System under test | Environment |
+> Work in progress. The structure, requirements, and test case list are in place. The implementation and the automated tests are being filled in.
+
+## What it covers
+
+| Area | Artifact |
 |---|---|
-| `src/aeb.py` (decision logic) | Ubuntu 22.04, ROS 2, MORAI |
-| UDS/CAN ECU sim (`sim/ecu_sim.py`) | vcan0 + python-can |
-| AI perception models | UFLD, YOLO |
+| Requirements and traceability | [`requirements/`](requirements) — requirement spec and RTM |
+| Test design | [`testcases/`](testcases) — equivalence classes, boundary values, decision tables, state transitions |
+| Unit and regression testing | [`tests/test_aeb.py`](tests/test_aeb.py) — pytest, one test ID per test case |
+| Continuous integration | [`.github/workflows/test.yml`](.github/workflows/test.yml) — runs on every push and pull request |
+| API testing | [`tests/api/`](tests/api) — requests + pytest |
+| In-vehicle network diagnostics | [`sim/ecu_sim.py`](sim/ecu_sim.py), [`tests/can/`](tests/can) — UDS over a virtual CAN bus |
+| Defect management | [`bug_reports/`](bug_reports) — reproducible reports with root cause analysis |
+| Functional safety and process | [`docs/`](docs) — verification levels, HARA, test plan, test report |
+| AI-assisted testing | [`docs/llm_tc_review.md`](docs/llm_tc_review.md) — review of LLM-generated test cases |
 
-## Structure
+## Repository layout
 
 ```
 automotive-sw-qa/
-├── requirements/           # Week 1–2: Requirements & RTM
-│   ├── aeb_requirements.md
-│   └── rtm.csv
-├── testcases/              # Week 2–3: Test case design
-│   └── aeb_testcases.csv
-├── src/
-│   └── aeb.py              # AEB-lite decision logic
-├── sim/
-│   └── ecu_sim.py          # Week 8: UDS ECU simulator (vcan0)
+├── requirements/        Requirement spec and traceability matrix
+├── testcases/           Test case list
+├── src/aeb.py           AEB-lite decision logic
+├── sim/ecu_sim.py       Virtual UDS ECU (vcan0)
 ├── tests/
-│   ├── conftest.py
-│   ├── test_aeb.py         # Week 6: pytest (parametrize, smoke, regression)
-│   ├── api/                # Week 7: API testing with requests+pytest
-│   └── can/                # Week 8: UDS/CAN testing
-├── bug_reports/            # Week 4–5: Defect tracking
-│   └── TEMPLATE.md
-├── docs/                   # Week 9–11: Standards & reports
-│   ├── verification_levels.md
-│   ├── hara.md
-│   ├── test_plan.md
-│   ├── test_report.md
-│   └── llm_tc_review.md
-├── .github/workflows/
-│   └── test.yml            # Week 6: CI (push + PR)
-├── pytest.ini
-└── requirements.txt
+│   ├── test_aeb.py      Decision logic tests
+│   ├── api/             API tests
+│   └── can/             UDS tests
+├── bug_reports/         Defect reports
+├── docs/                Test plan, test report, safety analysis
+└── .github/workflows/   CI
 ```
 
-## Weekly roadmap
-
-| Week | Dates | Topic |
-|---|---|---|
-| 1 | 10/12–10/18 | QA overview, V-Model, ISTQB CTFL, requirements + RTM skeleton |
-| 2 | 10/19–10/25 | Test case design — 50 TCs, RTM complete |
-| 3 | 10/26–11/01 | Defect tracking — Jira, 5 Whys, STAR write-ups |
-| 4 | 11/02–11/08 | pytest — parametrize, fixture, conftest, markers |
-| 5 | 11/09–11/15 | CI — GitHub Actions, Allure, API testing (Postman + requests) |
-| 6 | 11/16–11/22 | CAN/UDS — vcan0, python-can, ECU sim, NRC assertions |
-| 7 | 11/23–11/29 | SW testing — MIL/SIL/HIL, S32K144 HILS, ISO 26262, ASPICE |
-| 8 | 11/30–12/06 | AI/CV + LLM QA — UFLD, YOLO, LLM-assisted TC review, final report |
-
-## Quick start
+## Running the tests
 
 ```bash
 pip install -r requirements.txt
 pytest -m "not network and not can" -v
 ```
 
-## Reference
+The `network` tests need internet access. The `can` tests need a Linux virtual CAN interface (`vcan0`) with `sim/ecu_sim.py` running.
 
-- ISTQB CTFL v4.0
-- ISO 26262 (Functional Safety)
-- ASPICE SWE.1–6
+## Standards referenced
+
+ISTQB CTFL v4.0 · ISO 26262 · Automotive SPICE (SWE.1 to SWE.6) · ISO 14229 (UDS)
