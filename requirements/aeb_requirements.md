@@ -13,7 +13,7 @@ Sensor data older than the timeout is treated as a fault condition.
 | REQ-01 | Speed ≥ 30 km/h AND obstacle ≤ 20 m AND sensor valid → BRAKE | BRAKE |
 | REQ-02 | Speed < 30 km/h → NO_ACTION (regardless of obstacle) | NO_ACTION |
 | REQ-03 | Sensor age ≥ 200 ms → FAULT | FAULT |
-| REQ-04 | FAULT state → hold for 1 s then return to NORMAL | NORMAL after 1 s |
+| REQ-04 | In FAULT, sensor healthy for 1 s → return to NORMAL | NORMAL |
 | REQ-05 | Speed outside [0, 250] km/h → FAULT (invalid input) | FAULT |
 
 ## Parameters
