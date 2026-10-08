@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 404" width="760" height="404" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img">
+<rect x="0.0" y="0.0" width="760.0" height="404.0" rx="8" fill="#1a1a19" fill-opacity="1.0"/>
+<text x="24.0" y="30.0" font-size="15" font-weight="600" text-anchor="start" fill="#ffffff">The 12 starter test cases use 10 of 15 boundary points</text>
+<text x="24.0" y="50.0" font-size="12" font-weight="400" text-anchor="start" fill="#c3c2b7">Each threshold needs a test just below it, at it, and just above it. A ring is a point no test uses.</text>
+<text x="300.0" y="90.0" font-size="12" font-weight="400" text-anchor="middle" fill="#c3c2b7">just below</text>
+<text x="470.0" y="90.0" font-size="12" font-weight="400" text-anchor="middle" fill="#c3c2b7">at the boundary</text>
+<text x="640.0" y="90.0" font-size="12" font-weight="400" text-anchor="middle" fill="#c3c2b7">just above</text>
+<line x1="24.0" y1="104.0" x2="736.0" y2="104.0" stroke="#33332f" stroke-width="1" stroke-linecap="round"/>
+<text x="24.0" y="135.0" font-size="13" font-weight="600" text-anchor="start" fill="#ffffff">Minimum speed</text>
+<text x="24.0" y="151.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">0 km/h</text>
+<circle cx="256.0" cy="134.0" r="6" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="270.0" y="133.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">-0.1</text>
+<text x="270.0" y="148.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">TC-41</text>
+<circle cx="426.0" cy="134.0" r="6" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="440.0" y="133.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">0</text>
+<text x="440.0" y="148.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">TC-12</text>
+<circle cx="596.0" cy="134.0" r="5.5" fill="none" stroke="#d95926" stroke-width="2"/>
+<text x="610.0" y="133.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">0.1</text>
+<text x="610.0" y="148.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">no test</text>
+<line x1="24.0" y1="160.0" x2="736.0" y2="160.0" stroke="#33332f" stroke-width="1" stroke-linecap="round"/>
+<text x="24.0" y="181.0" font-size="13" font-weight="600" text-anchor="start" fill="#ffffff">Brake threshold</text>
+<text x="24.0" y="197.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">30 km/h</text>
+<circle cx="256.0" cy="180.0" r="6" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="270.0" y="179.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">29.9</text>
+<text x="270.0" y="194.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">TC-11</text>
+<circle cx="426.0" cy="180.0" r="6" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="440.0" y="179.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">30</text>
+<text x="440.0" y="194.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">TC-02</text>
+<circle cx="596.0" cy="180.0" r="6" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="610.0" y="179.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">30.1</text>
+<text x="610.0" y="194.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">TC-03</text>
+<line x1="24.0" y1="206.0" x2="736.0" y2="206.0" stroke="#33332f" stroke-width="1" stroke-linecap="round"/>
+<text x="24.0" y="227.0" font-size="13" font-weight="600" text-anchor="start" fill="#ffffff">Maximum speed</text>
+<text x="24.0" y="243.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">250 km/h</text>
+<circle cx="256.0" cy="226.0" r="5.5" fill="none" stroke="#d95926" stroke-width="2"/>
+<text x="270.0" y="225.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">249.9</text>
+<text x="270.0" y="240.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">no test</text>
+<circle cx="426.0" cy="226.0" r="5.5" fill="none" stroke="#d95926" stroke-width="2"/>
+<text x="440.0" y="225.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">250</text>
+<text x="440.0" y="240.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">no test</text>
+<circle cx="596.0" cy="226.0" r="6" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="610.0" y="225.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">250.1</text>
+<text x="610.0" y="240.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">TC-42</text>
+<line x1="24.0" y1="252.0" x2="736.0" y2="252.0" stroke="#33332f" stroke-width="1" stroke-linecap="round"/>
+<text x="24.0" y="273.0" font-size="13" font-weight="600" text-anchor="start" fill="#ffffff">Detection range</text>
+<text x="24.0" y="289.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">20 m</text>
+<circle cx="256.0" cy="272.0" r="5.5" fill="none" stroke="#d95926" stroke-width="2"/>
+<text x="270.0" y="271.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">19.9</text>
+<text x="270.0" y="286.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">no test</text>
+<circle cx="426.0" cy="272.0" r="6" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="440.0" y="271.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">20</text>
+<text x="440.0" y="286.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">TC-04</text>
+<circle cx="596.0" cy="272.0" r="6" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="610.0" y="271.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">20.1</text>
+<text x="610.0" y="286.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">TC-05</text>
+<line x1="24.0" y1="298.0" x2="736.0" y2="298.0" stroke="#33332f" stroke-width="1" stroke-linecap="round"/>
+<text x="24.0" y="319.0" font-size="13" font-weight="600" text-anchor="start" fill="#ffffff">Sensor timeout</text>
+<text x="24.0" y="335.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">200 ms</text>
+<circle cx="256.0" cy="318.0" r="6" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="270.0" y="317.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">199</text>
+<text x="270.0" y="332.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">TC-21</text>
+<circle cx="426.0" cy="318.0" r="6" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="440.0" y="317.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">200</text>
+<text x="440.0" y="332.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">TC-22</text>
+<circle cx="596.0" cy="318.0" r="5.5" fill="none" stroke="#d95926" stroke-width="2"/>
+<text x="610.0" y="317.0" font-size="12" font-weight="600" text-anchor="start" fill="#ffffff">201</text>
+<text x="610.0" y="332.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">no test</text>
+<line x1="24.0" y1="344.0" x2="736.0" y2="344.0" stroke="#33332f" stroke-width="1" stroke-linecap="round"/>
+<circle cx="30.0" cy="372.0" r="6" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="44.0" y="376.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">used by a test case</text>
+<circle cx="200.0" cy="372.0" r="5.5" fill="none" stroke="#d95926" stroke-width="2"/>
+<text x="214.0" y="376.0" font-size="11" font-weight="400" text-anchor="start" fill="#c3c2b7">not used by any test case</text>
+</svg>

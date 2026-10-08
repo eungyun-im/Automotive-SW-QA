@@ -16,6 +16,7 @@ Requires MATLAB with Simulink, Stateflow and Simulink Coverage. Built and run wi
 | `build_model.m` | Creates `aeb_model.slx` from scratch, so the model is reviewable as text |
 | `run_mil.m` | Simulates the model with the designed test cases and writes the results |
 | `aeb_model.slx` | The generated model |
+| `export_images.m` | Saves pictures of the model and the chart to `docs/img/` for the README |
 | `results/mil_results.csv` | One row per simulated sample: inputs, expected result, model output, verdict |
 | `results/coverage_summary.csv` | Decision, condition and MC/DC coverage of the model from those test cases |
 

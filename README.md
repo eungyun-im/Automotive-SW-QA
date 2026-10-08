@@ -99,6 +99,12 @@ The traceability matrix is generated from these files with `python -m tools.rtm`
 | C99 code | SIL | [`src/c/`](src/c) | pytest calls the compiled library through `ctypes` |
 | Python reference | SIL | [`src/aeb.py`](src/aeb.py) | pytest calls it directly |
 
+The model: a MATLAB Function block for the decision, and a Stateflow chart for the fault latch.
+
+<img src="docs/img/simulink-model.png" alt="Simulink model: five inputs, the decide block, the fault_latch chart, two outputs" width="760">
+
+<img src="docs/img/stateflow-fault-latch.png" alt="Stateflow chart with the states NORMAL and FAULT_LATCHED and the two transitions between them" width="560">
+
 **Back-to-back results**
 
 | Comparison | Inputs | Result |
@@ -141,6 +147,15 @@ python -m tools.mutation
 | Mutation score | 92 % |
 
 Both survivors sit on the same boundary: the upper speed limit can change from `<= 250.0` to `< 250.0`, or from `250.0` to `249.0`, and every test still passes. The set tests 250.1 km/h but never 250.0. Full branch coverage did not reveal that. The mutation report did, and it names the missing test.
+
+The same gap is visible when the test cases are laid against the boundary points of the spec:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/boundary-points-dark.svg">
+  <img src="docs/img/boundary-points-light.svg" alt="Boundary points used by the starter test cases: 10 of 15, with 249.9 and 250.0 km/h among the unused ones" width="760">
+</picture>
+
+Regenerated from the test case file with `python -m tools.figures`.
 
 Equivalent mutants are not excluded, so the score is a lower bound. The report is regenerated on every CI run.
 

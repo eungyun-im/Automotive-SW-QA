@@ -83,12 +83,12 @@ add_data(chart, 'RECOVERY_MS', 'Constant', '1000');
 
 normal = Stateflow.State(chart);
 normal.Name = 'NORMAL';
-normal.Position = [60 80 200 80];
+normal.Position = [300 60 240 70];
 normal.LabelString = sprintf('NORMAL\ndu: action = raw_action;');
 
 latched = Stateflow.State(chart);
 latched.Name = 'FAULT_LATCHED';
-latched.Position = [420 60 300 140];
+latched.Position = [270 330 300 150];
 latched.LabelString = sprintf([ ...
     'FAULT_LATCHED\n' ...
     'du:\n' ...
@@ -101,23 +101,28 @@ latched.LabelString = sprintf([ ...
 
 initial = Stateflow.Transition(chart);
 initial.Destination = normal;
-initial.DestinationOClock = 9;
-initial.SourceEndpoint = [20 120];
+initial.DestinationOClock = 0;
+initial.SourceEndpoint = [420 20];
 
+% Down the right side into the latch, back up the left side. Labels sit
+% outside the states so nothing overlaps.
 to_fault = Stateflow.Transition(chart);
 to_fault.Source = normal;
 to_fault.Destination = latched;
-to_fault.SourceOClock = 2;
-to_fault.DestinationOClock = 10;
-to_fault.LabelString = '[raw_action == FAULT]{healthy_ms = 0; action = FAULT;}';
+to_fault.SourceOClock = 5;
+to_fault.DestinationOClock = 1;
+to_fault.LabelString = sprintf('[raw_action == FAULT]\n{healthy_ms = 0; action = FAULT;}');
+to_fault.LabelPosition = [560 200 230 34];
 
 recover = Stateflow.Transition(chart);
 recover.Source = latched;
 recover.Destination = normal;
-recover.SourceOClock = 8;
-recover.DestinationOClock = 4;
-recover.LabelString = ...
-    '[raw_action ~= FAULT && healthy_ms + dt_ms >= RECOVERY_MS]{healthy_ms = 0; action = raw_action;}';
+recover.SourceOClock = 11;
+recover.DestinationOClock = 7;
+recover.LabelString = sprintf([ ...
+    '[raw_action ~= FAULT && healthy_ms + dt_ms >= RECOVERY_MS]\n' ...
+    '{healthy_ms = 0; action = raw_action;}']);
+recover.LabelPosition = [20 200 280 34];
 
 % Outputs
 add_block('simulink/Sinks/Out1', [mdl '/raw_action'], 'Position', [740 60 770 74]);
