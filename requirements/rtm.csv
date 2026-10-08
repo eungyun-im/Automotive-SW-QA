@@ -1,0 +1,6 @@
+REQ_ID,Requirement,Function,TC_IDs,Status
+REQ-01,Speed >= 30 km/h AND obstacle <= 20 m → BRAKE,aeb.py decide(),TC-01~TC-08,TODO
+REQ-02,Speed < 30 km/h → NO_ACTION,aeb.py decide(),TC-11~TC-12,TODO
+REQ-03,Sensor age >= 200 ms → FAULT,aeb.py decide(),TC-21~TC-22,TODO
+REQ-04,FAULT hold 1 s then NORMAL,aeb.py decide(),TC-31~TC-36,TODO
+REQ-05,Speed outside [0-250] → FAULT,aeb.py decide(),TC-41~TC-42,TODO
