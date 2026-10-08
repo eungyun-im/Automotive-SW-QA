@@ -2,16 +2,16 @@
 
 # automotive-sw-qa
 
-**End-to-end software QA for an automotive safety function,<br>from requirements to an automated regression suite.**
+**Requirement-based testing of an automotive safety function,<br>with the test design itself put under measurement.**
 
 [![tests](https://github.com/eungyun-im/automotive-sw-qa/actions/workflows/test.yml/badge.svg)](https://github.com/eungyun-im/automotive-sw-qa/actions/workflows/test.yml)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
 ![pytest](https://img.shields.io/badge/pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
-![CAN / UDS](https://img.shields.io/badge/CAN_%2F_UDS-ISO_14229-555555?style=flat-square)
+![Coverage](https://img.shields.io/badge/branch_coverage-measured_in_CI-555555?style=flat-square)
+![Mutation testing](https://img.shields.io/badge/mutation_testing-measured_in_CI-555555?style=flat-square)
 ![ISO 26262](https://img.shields.io/badge/ISO_26262-reference-555555?style=flat-square)
 
-[Overview](#overview) · [Requirements](#requirements) · [Test design](#test-design) · [Traceability](#traceability) · [Layout](#repository-layout) · [Run](#running-the-tests)
+[Overview](#overview) · [Requirements](#requirements) · [Test design](#test-design) · [Traceability](#traceability) · [Measuring the tests](#measuring-the-tests) · [Layout](#repository-layout) · [Run](#running)
 
 </div>
 
@@ -19,21 +19,25 @@
 
 ## Overview
 
-The system under test is **AEB-lite**, a simplified Automatic Emergency Braking decision function. It takes vehicle speed, obstacle distance, and sensor data age, and returns one of three actions: `BRAKE`, `NO_ACTION`, or `FAULT`.
+The system under test is **AEB-lite**, a simplified Automatic Emergency Braking decision function. It takes vehicle speed, obstacle distance and sensor data age, and returns `BRAKE`, `NO_ACTION` or `FAULT`.
 
-Every artifact in this repository traces back to the same five requirements: the test cases, the automated tests, the defect reports, and the final test report.
+The repository follows one thread from requirement to evidence:
 
-> **Status:** work in progress. The structure, requirements, and test case list are in place. The implementation and the automated tests are being filled in.
+- Test cases are **designed in CSV files**, traced to requirements. Code only executes them.
+- Each test case runs as one pytest test whose ID is the test case ID.
+- The test design is then checked two ways: which code it executes (branch coverage) and which code changes it would notice (mutation testing).
+
+> **Status:** the decision logic, the test runner, the traceability matrix and the mutation tool are implemented and run in CI. The test case list is a starter set. Extending it, covering REQ-04, and writing the defect and test reports are open.
 
 ```mermaid
 flowchart LR
-    R[Requirements<br>REQ-01 to REQ-05] --> T[Test cases<br>TC IDs]
-    T --> A[Automated tests<br>pytest]
-    A --> C[CI<br>GitHub Actions]
-    C --> P[Test report]
-    A -. fail .-> B[Defect report<br>BUG IDs]
-    B -. fix and retest .-> A
-    R -. RTM .-> P
+    R[Requirements<br>REQ-01 to REQ-05] --> T[Test cases<br>CSV, one ID each]
+    T --> A[pytest<br>one test per ID]
+    A --> C[CI]
+    T --> M[RTM<br>generated]
+    A --> V[Branch coverage]
+    T --> X[Mutation testing]
+    X -. surviving mutant = gap in the design .-> T
 ```
 
 ## Requirements
@@ -43,30 +47,29 @@ flowchart LR
 | REQ-01 | Speed ≥ 30 km/h, obstacle ≤ 20 m, sensor data valid | `BRAKE` |
 | REQ-02 | Speed < 30 km/h | `NO_ACTION` |
 | REQ-03 | Sensor data age ≥ 200 ms | `FAULT` |
-| REQ-04 | In `FAULT`, sensor healthy for 1 s | back to `NORMAL` |
+| REQ-04 | In `FAULT`, inputs healthy for 1 s | back to `NORMAL` |
 | REQ-05 | Speed outside 0 to 250 km/h | `FAULT` |
 
-Full spec: [`requirements/aeb_requirements.md`](requirements/aeb_requirements.md)
+Full spec and design decisions: [`requirements/aeb_requirements.md`](requirements/aeb_requirements.md)
 
 ```mermaid
 stateDiagram-v2
     [*] --> NORMAL
-    NORMAL --> FAULT: sensor age >= 200 ms
-    NORMAL --> FAULT: speed out of range
-    FAULT --> NORMAL: sensor healthy for 1 s
-    FAULT --> FAULT: sensor still stale
+    NORMAL --> FAULT: stale sensor or invalid speed
+    FAULT --> FAULT: fault again (timer restarts)
+    FAULT --> NORMAL: healthy for 1000 ms
 ```
 
-## Test design
+While latched in `FAULT`, the output stays `FAULT` even when the inputs would otherwise call for `BRAKE`.
 
-Four techniques, each chosen for the part of the requirements it fits.
+## Test design
 
 | Technique | Applied to | Example |
 |---|---|---|
 | Equivalence partitioning | Speed and distance ranges | below 0 · 0 to 30 · 30 to 250 · above 250 km/h |
 | Boundary value analysis | Every threshold | 29.9 / 30.0 / 30.1 km/h · 20.0 / 20.1 m · 199 / 200 ms |
 | Decision table | REQ-01, 02, 05 | see below |
-| State transition | REQ-03, 04 | `NORMAL` ↔ `FAULT` |
+| State transition | REQ-03, 04 | `NORMAL` ↔ `FAULT` as timed sequences |
 
 **Decision table**
 
@@ -77,89 +80,114 @@ Four techniques, each chosen for the part of the requirements it fits.
 | Obstacle ≤ 20 m | – | – | N | Y |
 | **Output** | `FAULT` | `NO_ACTION` | `NO_ACTION` | `BRAKE` |
 
-Test case list: [`testcases/aeb_testcases.csv`](testcases/aeb_testcases.csv)
+The test cases live in two files, described in [`testcases/README.md`](testcases/README.md):
+
+- [`aeb_testcases.csv`](testcases/aeb_testcases.csv): one row per test of the stateless decision.
+- [`aeb_sequences.csv`](testcases/aeb_sequences.csv): timed sequences for the fault latch.
+
+Adding a row adds a test. No Python changes are needed.
 
 ## Traceability
 
-Each automated test carries its test case ID as the pytest ID, so a CI result maps directly onto a row of the traceability matrix.
+The matrix is generated from the test case files, so it cannot drift from them:
 
-| Requirement | Test cases | Automated in |
+```bash
+python -m tools.rtm
+```
+
+| Requirement | Test cases | Covered |
 |---|---|---|
-| REQ-01 | TC-01 to TC-06 | `tests/test_aeb.py::test_brake_decision` |
-| REQ-02 | TC-11, TC-12 | `tests/test_aeb.py::test_brake_decision` |
-| REQ-03 | TC-21, TC-22 | `tests/test_aeb.py::test_sensor_timeout` |
-| REQ-04 | TC-31 onward | planned |
-| REQ-05 | TC-41, TC-42 | `tests/test_aeb.py::test_invalid_speed` |
+| REQ-01 | TC-01 to TC-06 | yes |
+| REQ-02 | TC-11, TC-12 | yes |
+| REQ-03 | TC-21, TC-22 | yes |
+| REQ-04 | none yet | no |
+| REQ-05 | TC-41, TC-42 | yes |
 
-Matrix: [`requirements/rtm.csv`](requirements/rtm.csv)
+Stored as [`requirements/rtm.csv`](requirements/rtm.csv). A test case that cites an unknown requirement fails CI.
 
-## What it covers
+## Measuring the tests
 
-| Area | Artifact |
+**Branch coverage** shows which code the test cases execute. The starter set reaches 100 % of `src/aeb.py`.
+
+**Mutation testing** asks a harder question. The tool makes one small change to the decision logic at a time (`>=` to `>`, `30.0` to `31.0`, `and` to `or`, a different return value) and reruns the test cases. A change no test notices is a surviving mutant.
+
+```bash
+python -m tools.mutation
+```
+
+With the 12 starter test cases:
+
+| | |
 |---|---|
-| Requirements and traceability | [`requirements/`](requirements) |
-| Test design | [`testcases/`](testcases) |
-| Unit and regression testing | [`tests/test_aeb.py`](tests/test_aeb.py) |
-| Continuous integration | [`.github/workflows/test.yml`](.github/workflows/test.yml) |
-| API testing | [`tests/api/`](tests/api) |
-| In-vehicle network diagnostics | [`sim/ecu_sim.py`](sim/ecu_sim.py), [`tests/can/`](tests/can) |
-| Defect management | [`bug_reports/`](bug_reports) |
-| Functional safety and process | [`docs/`](docs) |
-| AI-assisted testing | [`docs/llm_tc_review.md`](docs/llm_tc_review.md) |
+| Mutants generated | 25 |
+| Killed | 23 |
+| Survived | 2 |
+| Mutation score | 92 % |
+
+Both survivors sit on the same boundary: the upper speed limit can change from `<= 250.0` to `< 250.0`, or from `250.0` to `249.0`, and every test still passes. The set tests 250.1 km/h but never 250.0. Full branch coverage did not reveal that. The mutation report did, and it names the missing test.
+
+Equivalent mutants are not excluded, so the score is a lower bound. The report is regenerated on every CI run.
 
 ## Repository layout
 
 ```
 automotive-sw-qa/
-├── requirements/        Requirement spec and traceability matrix
-├── testcases/           Test case list
-├── src/aeb.py           AEB-lite decision logic
-├── sim/ecu_sim.py       Virtual UDS ECU (vcan0)
+├── requirements/
+│   ├── aeb_requirements.md   Requirement spec and design decisions
+│   └── rtm.csv               Traceability matrix (generated)
+├── testcases/                Test design: CSV files and their format
+├── src/aeb.py                Decision logic and fault latch
 ├── tests/
-│   ├── test_aeb.py      Decision logic tests
-│   ├── api/             API tests
-│   └── can/             UDS tests
-├── bug_reports/         Defect reports
-├── docs/                Test plan, test report, safety analysis
-└── .github/workflows/   CI
+│   ├── test_aeb.py           Runs aeb_testcases.csv
+│   ├── test_aeb_sequences.py Runs aeb_sequences.csv
+│   ├── test_controller.py    Implementation checks for the fault latch
+│   └── test_traceability.py  Consistency of test cases and requirements
+├── tools/
+│   ├── rtm.py                Traceability matrix
+│   ├── mutation.py           Mutation testing
+│   └── testcases.py          CSV loading
+├── bug_reports/              Defect report template
+├── docs/                     Test plan, verification levels, HARA, test report
+└── .github/workflows/        CI: tests, coverage, RTM, mutation report
 ```
 
-## Running the tests
+## Running
 
 ```bash
 pip install -r requirements.txt
-pytest -m "not network and not can" -v
+pytest -v --cov=src --cov-branch
 ```
 
-| Marker | Purpose | Needs |
-|---|---|---|
-| `smoke` | Fast checks | nothing extra |
-| `regression` | Full requirement coverage | nothing extra |
-| `network` | API tests | internet access |
-| `can` | UDS tests | Linux `vcan0` with `sim/ecu_sim.py` running |
+| Marker | Selects |
+|---|---|
+| `smoke` | High-priority test cases |
+| `regression` | Every designed test case |
 
 ## Roadmap
 
 **Core**
 
-- [ ] Full test case list from the four design techniques, traced in the RTM
-- [ ] AEB-lite decision logic
-- [ ] Parametrized tests, one pytest ID per test case
+- [x] AEB-lite decision logic and fault latch
+- [x] Data-driven tests, one pytest ID per test case
+- [x] Generated traceability matrix
+- [x] Branch coverage and mutation testing in CI
+- [x] Test plan
+- [ ] Full test case list from the four design techniques, with every mutant killed or explained
+- [ ] REQ-04 sequence test cases
 - [ ] Defect reports with reproduction steps and root cause
-- [ ] Test plan and test report
-
-**Next**
-
-- [ ] Statement and branch coverage, with notes on MC/DC
-- [ ] Mutation testing to measure how many injected faults the suite catches
+- [ ] Test report
 
 **Later**
 
-- [ ] REQ-04 recovery state machine and state transition tests
 - [ ] HARA traced to safety requirements and tests
 - [ ] API tests against a mock vehicle control service
 - [ ] Static analysis on a C port of the decision logic
 
 ## Standards referenced
 
-ISTQB CTFL v4.0 · ISO 26262 · Automotive SPICE (SWE.1 to SWE.6) · ISO 14229 (UDS)
+ISTQB CTFL v4.0 · ISO 26262 · Automotive SPICE (SWE.1, SWE.4)
+
+## Related
+
+- [ecu-quality-gate](https://github.com/eungyun-im/ecu-quality-gate): release gate for ECU software with UDS diagnostics, network and security checks
+- [llm-testcase-review](https://github.com/eungyun-im/llm-testcase-review): execution-based evaluation of LLM-written test cases for this same function

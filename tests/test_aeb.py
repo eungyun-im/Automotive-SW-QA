@@ -1,21 +1,24 @@
+"""Runs every row of testcases/aeb_testcases.csv as one test.
+
+The pytest ID is the test case ID, so a CI result maps onto one RTM row.
+"""
+
 import pytest
 
-# TODO: one parametrized case per row of testcases/aeb_testcases.csv,
-# with the TC ID as the pytest id so results map 1:1 onto the RTM.
+from aeb import decide
+from tools.testcases import load_cases
+
+CASES = load_cases()
 
 
-@pytest.mark.regression
-@pytest.mark.skip(reason="not implemented: REQ-01/02 brake decision, TC-01~TC-12")
-def test_brake_decision():
-    pass
+def _param(case):
+    marks = [pytest.mark.regression]
+    if case.priority == "High":
+        marks.append(pytest.mark.smoke)
+    return pytest.param(case, id=case.tc_id, marks=marks)
 
 
-@pytest.mark.smoke
-@pytest.mark.skip(reason="not implemented: REQ-03 sensor timeout, TC-21~TC-22")
-def test_sensor_timeout():
-    pass
-
-
-@pytest.mark.skip(reason="not implemented: REQ-05 invalid speed, TC-41~TC-42")
-def test_invalid_speed():
-    pass
+@pytest.mark.parametrize("case", [_param(c) for c in CASES])
+def test_decision(case):
+    actual = decide(case.speed_kph, case.obstacle_m, case.sensor_age_ms)
+    assert actual.value == case.expected, f"{case.tc_id} ({case.req_id})"

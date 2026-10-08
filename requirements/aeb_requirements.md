@@ -24,3 +24,9 @@ Sensor data older than the timeout is treated as a fault condition.
 | Detection range | 20 m |
 | Sensor timeout | 200 ms |
 | Valid speed range | 0–250 km/h |
+
+## Design decisions
+
+- **Check order.** Input range (REQ-05) is checked first, then sensor age (REQ-03), then the brake condition (REQ-01). A stale sensor reading therefore never produces BRAKE.
+- **Fault latch (REQ-04).** Any FAULT, from a stale sensor or an out-of-range speed, puts the controller in the FAULT state. While latched the output stays FAULT, even if the inputs would otherwise call for BRAKE. After 1000 ms of continuous healthy input the controller returns to NORMAL. A new fault during recovery restarts the 1000 ms.
+- **No obstacle.** "Nothing detected" is a distinct input (empty in the CSV, `None` in code), not a distance of zero.

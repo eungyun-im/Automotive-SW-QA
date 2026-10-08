@@ -9,7 +9,15 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - run: pytest -v -m "not network and not can" --junitxml=reports/junit.xml
+      - name: Tests with branch coverage
+        run: pytest -v --cov=src --cov-branch --cov-report=term-missing --junitxml=reports/junit.xml
+      - name: Traceability matrix
+        run: python -m tools.rtm | tee reports/rtm.txt
+      - name: Mutation report
+        run: python -m tools.mutation --write
+      - name: Publish summary
+        if: always()
+        run: cat reports/mutation.md >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
