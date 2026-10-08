@@ -1,0 +1,13 @@
+kind,tc_id,step,speed_kph,obstacle_m,sensor_age_ms,dt_ms,expected,model_output,verdict
+decision,TC-01,1,40,10,50,0,BRAKE,BRAKE,PASS
+decision,TC-02,1,30,10,50,0,BRAKE,BRAKE,PASS
+decision,TC-03,1,30.1,10,50,0,BRAKE,BRAKE,PASS
+decision,TC-04,1,40,20,50,0,BRAKE,BRAKE,PASS
+decision,TC-05,1,40,20.1,50,0,NO_ACTION,NO_ACTION,PASS
+decision,TC-06,1,40,,50,0,NO_ACTION,NO_ACTION,PASS
+decision,TC-11,1,29.9,10,50,0,NO_ACTION,NO_ACTION,PASS
+decision,TC-12,1,0,5,50,0,NO_ACTION,NO_ACTION,PASS
+decision,TC-21,1,40,10,199,0,BRAKE,BRAKE,PASS
+decision,TC-22,1,40,10,200,0,FAULT,FAULT,PASS
+decision,TC-41,1,-0.1,10,50,0,FAULT,FAULT,PASS
+decision,TC-42,1,250.1,10,50,0,FAULT,FAULT,PASS

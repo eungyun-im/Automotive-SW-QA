@@ -9,15 +9,26 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -r requirements.txt
-      - name: Tests with branch coverage
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq cppcheck
+      - name: Tests on Python and C, with branch coverage of the Python code
         run: pytest -v --cov=src --cov-branch --cov-report=term-missing --junitxml=reports/junit.xml
+        env:
+          AEB_C_COVERAGE: "1"
+      - name: Branch coverage of the C code
+        run: gcovr --root . --filter src/c --txt-metric branch --txt reports/c_coverage.txt --fail-under-branch 100 && cat reports/c_coverage.txt
+      - name: Static analysis of the C code
+        run: cppcheck --std=c99 --enable=warning,style,performance,portability --error-exitcode=1 --inline-suppr src/c
+      - name: MISRA C:2012 check (informational, see docs/static_analysis.md)
+        run: cppcheck --std=c99 --addon=misra -q src/c 2>&1 | tee reports/misra.txt
       - name: Traceability matrix
         run: python -m tools.rtm | tee reports/rtm.txt
       - name: Mutation report
         run: python -m tools.mutation --write
       - name: Publish summary
         if: always()
-        run: cat reports/mutation.md >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          cat reports/mutation.md >> "$GITHUB_STEP_SUMMARY"
+          { echo; echo "## C branch coverage"; echo '```'; cat reports/c_coverage.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

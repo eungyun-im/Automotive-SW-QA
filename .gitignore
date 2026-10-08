@@ -3,3 +3,10 @@ __pycache__/
 .venv/
 .coverage
 reports/
+build/
+*.gcda
+*.gcno
+matlab/slprj/
+matlab/slcov_output/
+*.slxc
+*.autosave

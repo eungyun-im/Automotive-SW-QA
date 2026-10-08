@@ -2,7 +2,7 @@
 
 ## 1. Purpose and scope
 
-Verify that the AEB-lite decision logic in `src/aeb.py` meets REQ-01 to REQ-05.
+Verify that the AEB-lite decision logic meets REQ-01 to REQ-05 in all three implementations: the Simulink model (`matlab/aeb_model.slx`), the C code (`src/c/aeb.c`) and the Python reference (`src/aeb.py`).
 
 ## 2. Test items
 
@@ -14,14 +14,16 @@ Verify that the AEB-lite decision logic in `src/aeb.py` meets REQ-01 to REQ-05.
 
 ## 3. Approach
 
-- **Level:** unit test of the decision logic, driven by requirement-based test cases.
+- **Level:** unit test of the decision logic, driven by requirement-based test cases, at MIL (model) and SIL (C and Python).
+- **Back-to-back:** the three implementations must give the same output for the same input.
 - **Design techniques:** equivalence partitioning, boundary value analysis, decision table, state transition.
 - **Automation:** every row of `testcases/*.csv` is executed by pytest. The test case ID is the pytest ID.
-- **Adequacy of the test design:** measured two ways. Branch coverage shows which code the cases execute. Mutation testing shows which code changes the cases would notice.
+- **Adequacy of the test design:** measured two ways. Structural coverage shows which code the cases execute (branch on the code, decision, condition and MC/DC on the model). Mutation testing shows which code changes the cases would notice.
+- **Static analysis:** compiler warnings as errors and cppcheck on the C code, with a MISRA C:2012 check as information.
 
 ## 4. Environment
 
-Python 3.11, pytest, pytest-cov. GitHub Actions on `ubuntu-latest` for every push and pull request.
+Python 3.11, pytest, pytest-cov, gcc, gcovr and cppcheck on GitHub Actions (`ubuntu-latest`) for every push and pull request. MATLAB R2025b with Simulink, Stateflow and Simulink Coverage for the model, run locally with results committed.
 
 ## 5. Entry and exit criteria
 
@@ -30,7 +32,8 @@ Python 3.11, pytest, pytest-cov. GitHub Actions on `ubuntu-latest` for every pus
 | Entry | Requirements reviewed, test cases traced to requirements |
 | Exit | Every requirement has at least one executed test case |
 | Exit | All test cases pass |
-| Exit | Branch coverage of `src/aeb.py` is 100 % |
+| Exit | Branch coverage of the Python and C code is 100 %, and MC/DC of the model is 100 % |
+| Exit | Model, C code and Python reference agree on every test input |
 | Exit | Every surviving mutant is either killed by a new test case or recorded as equivalent |
 
 ## 6. Deliverables

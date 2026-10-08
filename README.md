@@ -2,16 +2,17 @@
 
 # automotive-sw-qa
 
-**Requirement-based testing of an automotive safety function,<br>with the test design itself put under measurement.**
+**Requirement-based testing of an automotive safety function,<br>across model, C code and reference, with the test design itself put under measurement.**
 
 [![tests](https://github.com/eungyun-im/automotive-sw-qa/actions/workflows/test.yml/badge.svg)](https://github.com/eungyun-im/automotive-sw-qa/actions/workflows/test.yml)
+![C99](https://img.shields.io/badge/C99-00599C?style=flat-square&logo=c&logoColor=white)
+![Simulink](https://img.shields.io/badge/Simulink_%2F_Stateflow-0076A8?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
 ![pytest](https://img.shields.io/badge/pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)
-![Coverage](https://img.shields.io/badge/branch_coverage-measured_in_CI-555555?style=flat-square)
-![Mutation testing](https://img.shields.io/badge/mutation_testing-measured_in_CI-555555?style=flat-square)
+![Mutation testing](https://img.shields.io/badge/mutation_testing-in_CI-555555?style=flat-square)
 ![ISO 26262](https://img.shields.io/badge/ISO_26262-reference-555555?style=flat-square)
 
-[Overview](#overview) · [Requirements](#requirements) · [Test design](#test-design) · [Traceability](#traceability) · [Measuring the tests](#measuring-the-tests) · [Layout](#repository-layout) · [Run](#running)
+[Overview](#overview) · [Requirements](#requirements) · [Test design](#test-design) · [Model, code, reference](#model-code-reference) · [Measuring the tests](#measuring-the-tests) · [Layout](#repository-layout) · [Run](#running)
 
 </div>
 
@@ -24,18 +25,19 @@ The system under test is **AEB-lite**, a simplified Automatic Emergency Braking 
 The repository follows one thread from requirement to evidence:
 
 - Test cases are **designed in CSV files**, traced to requirements. Code only executes them.
-- Each test case runs as one pytest test whose ID is the test case ID.
-- The test design is then checked two ways: which code it executes (branch coverage) and which code changes it would notice (mutation testing).
+- The same test cases run on three implementations of the function: a **Simulink/Stateflow model**, **C code**, and a **Python reference**. Their outputs are compared back to back.
+- The test design is then measured: which code it executes (coverage, up to MC/DC on the model) and which code changes it would notice (mutation testing).
 
-> **Status:** the decision logic, the test runner, the traceability matrix and the mutation tool are implemented and run in CI. The test case list is a starter set. Extending it, covering REQ-04, and writing the defect and test reports are open.
+> **Status:** the three implementations, the test runner, the traceability matrix, the mutation tool and the static analysis are in place and run in CI. The test case list is a starter set of 12. Extending it, covering REQ-04, and writing the defect and test reports are open.
 
 ```mermaid
 flowchart LR
     R[Requirements<br>REQ-01 to REQ-05] --> T[Test cases<br>CSV, one ID each]
-    T --> A[pytest<br>one test per ID]
-    A --> C[CI]
-    T --> M[RTM<br>generated]
-    A --> V[Branch coverage]
+    T --> M[Simulink model<br>MIL]
+    T --> C[C code<br>SIL]
+    T --> P[Python reference<br>SIL]
+    M <-. back to back .-> P
+    C <-. back to back .-> P
     T --> X[Mutation testing]
     X -. surviving mutant = gap in the design .-> T
 ```
@@ -85,37 +87,51 @@ The test cases live in two files, described in [`testcases/README.md`](testcases
 - [`aeb_testcases.csv`](testcases/aeb_testcases.csv): one row per test of the stateless decision.
 - [`aeb_sequences.csv`](testcases/aeb_sequences.csv): timed sequences for the fault latch.
 
-Adding a row adds a test. No Python changes are needed.
+Adding a row adds a test on all three implementations. No code changes are needed.
 
-## Traceability
+The traceability matrix is generated from these files with `python -m tools.rtm` and stored as [`requirements/rtm.csv`](requirements/rtm.csv). REQ-01, 02, 03 and 05 are covered; REQ-04 has no test case yet. A test case that cites an unknown requirement fails CI.
 
-The matrix is generated from the test case files, so it cannot drift from them:
+## Model, code, reference
 
-```bash
-python -m tools.rtm
-```
+| Implementation | Level | Where | How the test cases reach it |
+|---|---|---|---|
+| Simulink model with a Stateflow chart for the fault latch | MIL | [`matlab/`](matlab) | `run_mil.m` simulates one step per test row |
+| C99 code | SIL | [`src/c/`](src/c) | pytest calls the compiled library through `ctypes` |
+| Python reference | SIL | [`src/aeb.py`](src/aeb.py) | pytest calls it directly |
 
-| Requirement | Test cases | Covered |
+**Back-to-back results**
+
+| Comparison | Inputs | Result |
 |---|---|---|
-| REQ-01 | TC-01 to TC-06 | yes |
-| REQ-02 | TC-11, TC-12 | yes |
-| REQ-03 | TC-21, TC-22 | yes |
-| REQ-04 | none yet | no |
-| REQ-05 | TC-41, TC-42 | yes |
+| C code vs Python reference | 504-point boundary grid, 200 random timed sequences | identical, checked on every CI run |
+| Simulink model vs Python reference | 504 decision cases, 1500 sequence samples generated from the reference | identical (run in MATLAB R2025b) |
+| Simulink model vs designed test cases | 12 test cases | 12 passed |
 
-Stored as [`requirements/rtm.csv`](requirements/rtm.csv). A test case that cites an unknown requirement fails CI.
+CI has no MATLAB. The model outputs are stored in [`matlab/results/mil_results.csv`](matlab/results/mil_results.csv), and CI replays every stored input through the Python reference, so a model that disagrees with the code still fails the build.
+
+The C code is written by hand, not generated from the model. Agreement between them shows that both follow the same requirements.
+
+**Static analysis of the C code.** The build uses `-Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror`, and cppcheck gates CI with no findings. A MISRA C:2012 check with the cppcheck addon reports two advisory findings, both documented as deviations in [`docs/static_analysis.md`](docs/static_analysis.md). The addon covers a subset of MISRA and is not a qualified checker.
 
 ## Measuring the tests
 
-**Branch coverage** shows which code the test cases execute. The starter set reaches 100 % of `src/aeb.py`.
+**Structural coverage** with the 12 starter test cases:
 
-**Mutation testing** asks a harder question. The tool makes one small change to the decision logic at a time (`>=` to `>`, `30.0` to `31.0`, `and` to `or`, a different return value) and reruns the test cases. A change no test notices is a surviving mutant.
+| Artifact | Metric | Result |
+|---|---|---|
+| Python reference | Branch | 100 % |
+| C code | Branch | 100 % (including harness checks for NULL and overflow) |
+| Simulink model | Decision | 86.7 % (13 of 15) |
+| Simulink model | Condition | 78.6 % (11 of 14) |
+| Simulink model | MC/DC | 71.4 % (5 of 7) |
+
+The model numbers are lower because they include the fault latch, which has no designed test case yet, and because MC/DC asks more than branch coverage does. Inputs generated from the reference reach 100 % on all three model metrics, so the gap is in the test design and can be closed.
+
+**Mutation testing** asks a different question. The tool makes one small change to the decision logic at a time (`>=` to `>`, `30.0` to `31.0`, `and` to `or`, a different return value) and reruns the test cases. A change no test notices is a surviving mutant.
 
 ```bash
 python -m tools.mutation
 ```
-
-With the 12 starter test cases:
 
 | | |
 |---|---|
@@ -136,56 +152,77 @@ automotive-sw-qa/
 │   ├── aeb_requirements.md   Requirement spec and design decisions
 │   └── rtm.csv               Traceability matrix (generated)
 ├── testcases/                Test design: CSV files and their format
-├── src/aeb.py                Decision logic and fault latch
+├── matlab/
+│   ├── build_model.m         Builds the Simulink model from a script
+│   ├── run_mil.m             Simulates the model with the test cases, measures coverage
+│   ├── aeb_model.slx         The model
+│   └── results/              Stored model outputs and coverage summary
+├── src/
+│   ├── c/aeb.c, aeb.h        C implementation
+│   └── aeb.py                Python reference
 ├── tests/
-│   ├── test_aeb.py           Runs aeb_testcases.csv
-│   ├── test_aeb_sequences.py Runs aeb_sequences.csv
+│   ├── test_aeb.py           Test cases on the Python reference
+│   ├── test_aeb_c.py         Test cases on the C code
+│   ├── test_aeb_sequences.py Timed sequences
+│   ├── test_back_to_back.py  C vs Python, model vs Python
 │   ├── test_controller.py    Implementation checks for the fault latch
 │   └── test_traceability.py  Consistency of test cases and requirements
 ├── tools/
+│   ├── caeb.py               Builds the C library and wraps it for Python
+│   ├── model_check.py        Generates check inputs for the model
 │   ├── rtm.py                Traceability matrix
 │   ├── mutation.py           Mutation testing
 │   └── testcases.py          CSV loading
 ├── bug_reports/              Defect report template
-├── docs/                     Test plan, verification levels, HARA, test report
-└── .github/workflows/        CI: tests, coverage, RTM, mutation report
+├── docs/                     Test plan, verification levels, static analysis, HARA, test report
+└── .github/workflows/        CI: tests, coverage, static analysis, RTM, mutation report
 ```
 
 ## Running
+
+Python and C (needs gcc; the C tests are skipped without it):
 
 ```bash
 pip install -r requirements.txt
 pytest -v --cov=src --cov-branch
 ```
 
+Model in the loop (needs MATLAB with Simulink, Stateflow and Simulink Coverage), from the `matlab` folder:
+
+```matlab
+run_mil
+```
+
 | Marker | Selects |
 |---|---|
 | `smoke` | High-priority test cases |
 | `regression` | Every designed test case |
+| `c` | Tests that run the C code |
 
 ## Roadmap
 
 **Core**
 
-- [x] AEB-lite decision logic and fault latch
+- [x] AEB-lite decision logic and fault latch in Python, C and Simulink/Stateflow
 - [x] Data-driven tests, one pytest ID per test case
+- [x] Back-to-back comparison of the three implementations
 - [x] Generated traceability matrix
-- [x] Branch coverage and mutation testing in CI
+- [x] Coverage, mutation testing and static analysis in CI
 - [x] Test plan
-- [ ] Full test case list from the four design techniques, with every mutant killed or explained
+- [ ] Full test case list from the four design techniques, with every mutant killed or explained and MC/DC of the model closed
 - [ ] REQ-04 sequence test cases
 - [ ] Defect reports with reproduction steps and root cause
 - [ ] Test report
 
 **Later**
 
+- [ ] C code generated from the model with Embedded Coder, compared with the hand-written code
 - [ ] HARA traced to safety requirements and tests
 - [ ] API tests against a mock vehicle control service
-- [ ] Static analysis on a C port of the decision logic
 
 ## Standards referenced
 
-ISTQB CTFL v4.0 · ISO 26262 · Automotive SPICE (SWE.1, SWE.4)
+ISTQB CTFL v4.0 · ISO 26262-6 · MISRA C:2012 · Automotive SPICE (SWE.1, SWE.3, SWE.4)
 
 ## Related
 
