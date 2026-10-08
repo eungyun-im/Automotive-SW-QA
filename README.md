@@ -138,6 +138,28 @@ pytest -m "not network and not can" -v
 | `network` | API tests | internet access |
 | `can` | UDS tests | Linux `vcan0` with `sim/ecu_sim.py` running |
 
+## Roadmap
+
+**Core**
+
+- [ ] Full test case list from the four design techniques, traced in the RTM
+- [ ] AEB-lite decision logic
+- [ ] Parametrized tests, one pytest ID per test case
+- [ ] Defect reports with reproduction steps and root cause
+- [ ] Test plan and test report
+
+**Next**
+
+- [ ] Statement and branch coverage, with notes on MC/DC
+- [ ] Mutation testing to measure how many injected faults the suite catches
+
+**Later**
+
+- [ ] REQ-04 recovery state machine and state transition tests
+- [ ] HARA traced to safety requirements and tests
+- [ ] API tests against a mock vehicle control service
+- [ ] Static analysis on a C port of the decision logic
+
 ## Standards referenced
 
 ISTQB CTFL v4.0 · ISO 26262 · Automotive SPICE (SWE.1 to SWE.6) · ISO 14229 (UDS)
