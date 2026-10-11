@@ -7,7 +7,7 @@
 
 One simulation step is one sample. The `dt_ms` input says how much time the sample stands for, so a timed test sequence is one step per row. Actions travel as numbers: 0 `NO_ACTION`, 1 `BRAKE`, 2 `FAULT`.
 
-Requires MATLAB with Simulink, Stateflow and Simulink Coverage. Built and run with R2025b.
+Requires MATLAB with Simulink, Stateflow and Simulink Coverage; the scripts of the second half of the table also need Requirements Toolbox, Simulink Test, Simulink Design Verifier and Simulink Fault Analyzer. Built and run with R2025b.
 
 ## Files
 
@@ -19,6 +19,13 @@ Requires MATLAB with Simulink, Stateflow and Simulink Coverage. Built and run wi
 | `export_images.m` | Saves pictures of the model and the chart to `docs/img/` for the README |
 | `results/mil_results.csv` | One row per simulated sample: inputs, expected result, model output, verdict |
 | `results/coverage_summary.csv` | Decision, condition and MC/DC coverage of the model from those test cases |
+| `build_requirements.m` | Requirement set from `requirements/aeb_requirements.md`, linked to the model (Requirements Toolbox) |
+| `build_tests.m` | Simulink Test file from the designed test cases, linked to the requirements |
+| `run_tests.m` | Runs the Simulink Test file; writes `results/simulink_test_results.csv` and `results/traceability.csv` |
+| `change_impact.m` | Test cases marked by the links after a requirement change, against the stale ones; `results/change_impact.csv` |
+| `design_verifier_tests.m` | Test generation with Design Verifier and replay with Simulink Coverage; `results/dv_*.csv` |
+| `design_verifier_properties.m` | Proof of the requirements as properties, and six seeded defects; `results/dv_properties.csv`, `results/dv_defects.csv` |
+| `fault_analysis.m` | Ten input faults (Simulink Fault Analyzer); `results/fault_*.csv` |
 
 ## Running
 
@@ -27,6 +34,11 @@ In MATLAB, from this folder:
 ```matlab
 build_model   % only needed after changing build_model.m
 run_mil
+
+build_requirements; build_tests; run_tests   % requirements, test file, traceability
+change_impact
+design_verifier_tests; design_verifier_properties   % about 15 minutes
+fault_analysis                                      % needs the generated tests of design_verifier_tests
 ```
 
 Commit the updated `results/` files. `tests/test_back_to_back.py` replays every stored input through the Python reference in CI, so a model that disagrees with the code fails the build even though CI has no MATLAB.

@@ -1,0 +1,8 @@
+requirement,property,status
+REQ-03,a sensor age of 200 ms or more gives FAULT,Valid
+REQ-05,a speed outside 0 to 250 km/h gives FAULT,Valid
+REQ-01,brake conditions give BRAKE,Valid
+REQ-01,BRAKE only under brake conditions,Valid
+REQ-02,speed below 30 km/h with a valid sensor gives NO_ACTION,Valid
+REQ-04,the fault latch never hides a fault,Valid
+range,outputs are 0, 1 or 2,Valid

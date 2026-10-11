@@ -1,0 +1,11 @@
+fault,signal,behaviour,value,description
+speed_stuck_0,speed_kph,Stuck-at-Constant,0,"speed signal stuck at 0"
+speed_gain_half,speed_kph,Gain,0.5,"speed reads half of the true value"
+speed_gain_1p5,speed_kph,Gain,1.5,"speed reads 1.5 times the true value"
+detected_stuck_0,obstacle_detected,Stuck-at-Constant,0,"obstacle flag stuck at "nothing detected""
+detected_stuck_1,obstacle_detected,Stuck-at-Constant,1,"obstacle flag stuck at "obstacle detected""
+distance_gain_2,obstacle_m,Gain,2,"distance reads twice the true value"
+distance_stuck_0,obstacle_m,Stuck-at-Constant,0,"distance stuck at 0 m"
+age_stuck_0,sensor_age_ms,Stuck-at-Constant,0,"sensor age stuck at 0 (stale data looks fresh)"
+age_gain_10,sensor_age_ms,Gain,10,"sensor age reads ten times the true value"
+dt_stuck_0,dt_ms,Stuck-at-Constant,0,"time step stuck at 0 (recovery timer does not run)"

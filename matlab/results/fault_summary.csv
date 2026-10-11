@@ -1,0 +1,11 @@
+fault,stimuli,no_effect,safe_deviation,missed_brake,spurious_brake
+speed_stuck_0,31,19,0,6,0
+speed_gain_half,31,20,0,6,1
+speed_gain_1p5,31,30,0,0,1
+detected_stuck_0,31,25,0,6,0
+detected_stuck_1,31,29,0,0,2
+distance_gain_2,31,30,0,1,0
+distance_stuck_0,31,28,0,0,3
+age_stuck_0,31,30,0,0,1
+age_gain_10,31,18,13,0,0
+dt_stuck_0,31,27,4,0,0

@@ -1,0 +1,10 @@
+defect,falsified_property,counterexample,designed_tests_fail
+"D1 sensor timeout: '>=' becomes '>'","REQ-03 a sensor age of 200 ms or more gives FAULT","speed_kph=30 obstacle_detected=1 obstacle_m=0 sensor_age_ms=200 dt_ms=0",1
+"D1 sensor timeout: '>=' becomes '>'","REQ-01 BRAKE only under brake conditions","speed_kph=30 obstacle_detected=1 obstacle_m=0 sensor_age_ms=200 dt_ms=0",1
+"D2 detection range: '<=' becomes '<'","REQ-01 brake conditions give BRAKE","speed_kph=30 obstacle_detected=1 obstacle_m=20 sensor_age_ms=0 dt_ms=0",1
+"D3 brake speed: '>=' becomes '>'","REQ-01 brake conditions give BRAKE","speed_kph=30 obstacle_detected=1 obstacle_m=0 sensor_age_ms=0 dt_ms=0",1
+"D4 speed limit 250 becomes 255","REQ-05 a speed outside 0 to 250 km/h gives FAULT","speed_kph=251 obstacle_detected=1 obstacle_m=0 sensor_age_ms=0 dt_ms=0",1
+"D4 speed limit 250 becomes 255","REQ-01 BRAKE only under brake conditions","speed_kph=251 obstacle_detected=1 obstacle_m=0 sensor_age_ms=0 dt_ms=0",1
+"D5 brake check before the sensor check","REQ-03 a sensor age of 200 ms or more gives FAULT","speed_kph=30 obstacle_detected=1 obstacle_m=0 sensor_age_ms=200 dt_ms=0",1
+"D5 brake check before the sensor check","REQ-01 BRAKE only under brake conditions","speed_kph=30 obstacle_detected=1 obstacle_m=0 sensor_age_ms=200 dt_ms=0",1
+"D6 an obstacle closer than 1 m is ignored","REQ-01 brake conditions give BRAKE","speed_kph=30 obstacle_detected=1 obstacle_m=0 sensor_age_ms=0 dt_ms=0",0

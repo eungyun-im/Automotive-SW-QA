@@ -1,0 +1,311 @@
+fault,stimulus,nominal,faulted,effect
+speed_stuck_0,TC-01,BRAKE,NO_ACTION,missed brake
+speed_stuck_0,TC-02,BRAKE,NO_ACTION,missed brake
+speed_stuck_0,TC-03,BRAKE,NO_ACTION,missed brake
+speed_stuck_0,TC-04,BRAKE,NO_ACTION,missed brake
+speed_stuck_0,TC-05,NO_ACTION,NO_ACTION,no effect
+speed_stuck_0,TC-06,NO_ACTION,NO_ACTION,no effect
+speed_stuck_0,TC-11,NO_ACTION,NO_ACTION,no effect
+speed_stuck_0,TC-12,NO_ACTION,NO_ACTION,no effect
+speed_stuck_0,TC-21,BRAKE,NO_ACTION,missed brake
+speed_stuck_0,TC-22,FAULT,FAULT,no effect
+speed_stuck_0,TC-41,FAULT,NO_ACTION,other
+speed_stuck_0,TC-42,FAULT,NO_ACTION,other
+speed_gain_half,TC-01,BRAKE,NO_ACTION,missed brake
+speed_gain_half,TC-02,BRAKE,NO_ACTION,missed brake
+speed_gain_half,TC-03,BRAKE,NO_ACTION,missed brake
+speed_gain_half,TC-04,BRAKE,NO_ACTION,missed brake
+speed_gain_half,TC-05,NO_ACTION,NO_ACTION,no effect
+speed_gain_half,TC-06,NO_ACTION,NO_ACTION,no effect
+speed_gain_half,TC-11,NO_ACTION,NO_ACTION,no effect
+speed_gain_half,TC-12,NO_ACTION,NO_ACTION,no effect
+speed_gain_half,TC-21,BRAKE,NO_ACTION,missed brake
+speed_gain_half,TC-22,FAULT,FAULT,no effect
+speed_gain_half,TC-41,FAULT,FAULT,no effect
+speed_gain_half,TC-42,FAULT,BRAKE,spurious brake
+speed_gain_1p5,TC-01,BRAKE,BRAKE,no effect
+speed_gain_1p5,TC-02,BRAKE,BRAKE,no effect
+speed_gain_1p5,TC-03,BRAKE,BRAKE,no effect
+speed_gain_1p5,TC-04,BRAKE,BRAKE,no effect
+speed_gain_1p5,TC-05,NO_ACTION,NO_ACTION,no effect
+speed_gain_1p5,TC-06,NO_ACTION,NO_ACTION,no effect
+speed_gain_1p5,TC-11,NO_ACTION,BRAKE,spurious brake
+speed_gain_1p5,TC-12,NO_ACTION,NO_ACTION,no effect
+speed_gain_1p5,TC-21,BRAKE,BRAKE,no effect
+speed_gain_1p5,TC-22,FAULT,FAULT,no effect
+speed_gain_1p5,TC-41,FAULT,FAULT,no effect
+speed_gain_1p5,TC-42,FAULT,FAULT,no effect
+detected_stuck_0,TC-01,BRAKE,NO_ACTION,missed brake
+detected_stuck_0,TC-02,BRAKE,NO_ACTION,missed brake
+detected_stuck_0,TC-03,BRAKE,NO_ACTION,missed brake
+detected_stuck_0,TC-04,BRAKE,NO_ACTION,missed brake
+detected_stuck_0,TC-05,NO_ACTION,NO_ACTION,no effect
+detected_stuck_0,TC-06,NO_ACTION,NO_ACTION,no effect
+detected_stuck_0,TC-11,NO_ACTION,NO_ACTION,no effect
+detected_stuck_0,TC-12,NO_ACTION,NO_ACTION,no effect
+detected_stuck_0,TC-21,BRAKE,NO_ACTION,missed brake
+detected_stuck_0,TC-22,FAULT,FAULT,no effect
+detected_stuck_0,TC-41,FAULT,FAULT,no effect
+detected_stuck_0,TC-42,FAULT,FAULT,no effect
+detected_stuck_1,TC-01,BRAKE,BRAKE,no effect
+detected_stuck_1,TC-02,BRAKE,BRAKE,no effect
+detected_stuck_1,TC-03,BRAKE,BRAKE,no effect
+detected_stuck_1,TC-04,BRAKE,BRAKE,no effect
+detected_stuck_1,TC-05,NO_ACTION,NO_ACTION,no effect
+detected_stuck_1,TC-06,NO_ACTION,BRAKE,spurious brake
+detected_stuck_1,TC-11,NO_ACTION,NO_ACTION,no effect
+detected_stuck_1,TC-12,NO_ACTION,NO_ACTION,no effect
+detected_stuck_1,TC-21,BRAKE,BRAKE,no effect
+detected_stuck_1,TC-22,FAULT,FAULT,no effect
+detected_stuck_1,TC-41,FAULT,FAULT,no effect
+detected_stuck_1,TC-42,FAULT,FAULT,no effect
+distance_gain_2,TC-01,BRAKE,BRAKE,no effect
+distance_gain_2,TC-02,BRAKE,BRAKE,no effect
+distance_gain_2,TC-03,BRAKE,BRAKE,no effect
+distance_gain_2,TC-04,BRAKE,NO_ACTION,missed brake
+distance_gain_2,TC-05,NO_ACTION,NO_ACTION,no effect
+distance_gain_2,TC-06,NO_ACTION,NO_ACTION,no effect
+distance_gain_2,TC-11,NO_ACTION,NO_ACTION,no effect
+distance_gain_2,TC-12,NO_ACTION,NO_ACTION,no effect
+distance_gain_2,TC-21,BRAKE,BRAKE,no effect
+distance_gain_2,TC-22,FAULT,FAULT,no effect
+distance_gain_2,TC-41,FAULT,FAULT,no effect
+distance_gain_2,TC-42,FAULT,FAULT,no effect
+distance_stuck_0,TC-01,BRAKE,BRAKE,no effect
+distance_stuck_0,TC-02,BRAKE,BRAKE,no effect
+distance_stuck_0,TC-03,BRAKE,BRAKE,no effect
+distance_stuck_0,TC-04,BRAKE,BRAKE,no effect
+distance_stuck_0,TC-05,NO_ACTION,BRAKE,spurious brake
+distance_stuck_0,TC-06,NO_ACTION,NO_ACTION,no effect
+distance_stuck_0,TC-11,NO_ACTION,NO_ACTION,no effect
+distance_stuck_0,TC-12,NO_ACTION,NO_ACTION,no effect
+distance_stuck_0,TC-21,BRAKE,BRAKE,no effect
+distance_stuck_0,TC-22,FAULT,FAULT,no effect
+distance_stuck_0,TC-41,FAULT,FAULT,no effect
+distance_stuck_0,TC-42,FAULT,FAULT,no effect
+age_stuck_0,TC-01,BRAKE,BRAKE,no effect
+age_stuck_0,TC-02,BRAKE,BRAKE,no effect
+age_stuck_0,TC-03,BRAKE,BRAKE,no effect
+age_stuck_0,TC-04,BRAKE,BRAKE,no effect
+age_stuck_0,TC-05,NO_ACTION,NO_ACTION,no effect
+age_stuck_0,TC-06,NO_ACTION,NO_ACTION,no effect
+age_stuck_0,TC-11,NO_ACTION,NO_ACTION,no effect
+age_stuck_0,TC-12,NO_ACTION,NO_ACTION,no effect
+age_stuck_0,TC-21,BRAKE,BRAKE,no effect
+age_stuck_0,TC-22,FAULT,BRAKE,spurious brake
+age_stuck_0,TC-41,FAULT,FAULT,no effect
+age_stuck_0,TC-42,FAULT,FAULT,no effect
+age_gain_10,TC-01,BRAKE,FAULT,safe deviation
+age_gain_10,TC-02,BRAKE,FAULT,safe deviation
+age_gain_10,TC-03,BRAKE,FAULT,safe deviation
+age_gain_10,TC-04,BRAKE,FAULT,safe deviation
+age_gain_10,TC-05,NO_ACTION,FAULT,safe deviation
+age_gain_10,TC-06,NO_ACTION,FAULT,safe deviation
+age_gain_10,TC-11,NO_ACTION,FAULT,safe deviation
+age_gain_10,TC-12,NO_ACTION,FAULT,safe deviation
+age_gain_10,TC-21,BRAKE,FAULT,safe deviation
+age_gain_10,TC-22,FAULT,FAULT,no effect
+age_gain_10,TC-41,FAULT,FAULT,no effect
+age_gain_10,TC-42,FAULT,FAULT,no effect
+dt_stuck_0,TC-01,BRAKE,BRAKE,no effect
+dt_stuck_0,TC-02,BRAKE,BRAKE,no effect
+dt_stuck_0,TC-03,BRAKE,BRAKE,no effect
+dt_stuck_0,TC-04,BRAKE,BRAKE,no effect
+dt_stuck_0,TC-05,NO_ACTION,NO_ACTION,no effect
+dt_stuck_0,TC-06,NO_ACTION,NO_ACTION,no effect
+dt_stuck_0,TC-11,NO_ACTION,NO_ACTION,no effect
+dt_stuck_0,TC-12,NO_ACTION,NO_ACTION,no effect
+dt_stuck_0,TC-21,BRAKE,BRAKE,no effect
+dt_stuck_0,TC-22,FAULT,FAULT,no effect
+dt_stuck_0,TC-41,FAULT,FAULT,no effect
+dt_stuck_0,TC-42,FAULT,FAULT,no effect
+speed_stuck_0,DV-1 step 1,FAULT,FAULT,no effect
+speed_stuck_0,DV-1 step 2,FAULT,FAULT,no effect
+speed_stuck_0,DV-1 step 3,FAULT,FAULT,no effect
+speed_stuck_0,DV-1 step 4,FAULT,FAULT,no effect
+speed_stuck_0,DV-1 step 5,FAULT,FAULT,no effect
+speed_gain_half,DV-1 step 1,FAULT,FAULT,no effect
+speed_gain_half,DV-1 step 2,FAULT,FAULT,no effect
+speed_gain_half,DV-1 step 3,FAULT,FAULT,no effect
+speed_gain_half,DV-1 step 4,FAULT,FAULT,no effect
+speed_gain_half,DV-1 step 5,FAULT,FAULT,no effect
+speed_gain_1p5,DV-1 step 1,FAULT,FAULT,no effect
+speed_gain_1p5,DV-1 step 2,FAULT,FAULT,no effect
+speed_gain_1p5,DV-1 step 3,FAULT,FAULT,no effect
+speed_gain_1p5,DV-1 step 4,FAULT,FAULT,no effect
+speed_gain_1p5,DV-1 step 5,FAULT,FAULT,no effect
+detected_stuck_0,DV-1 step 1,FAULT,FAULT,no effect
+detected_stuck_0,DV-1 step 2,FAULT,FAULT,no effect
+detected_stuck_0,DV-1 step 3,FAULT,FAULT,no effect
+detected_stuck_0,DV-1 step 4,FAULT,FAULT,no effect
+detected_stuck_0,DV-1 step 5,FAULT,FAULT,no effect
+detected_stuck_1,DV-1 step 1,FAULT,FAULT,no effect
+detected_stuck_1,DV-1 step 2,FAULT,FAULT,no effect
+detected_stuck_1,DV-1 step 3,FAULT,FAULT,no effect
+detected_stuck_1,DV-1 step 4,FAULT,FAULT,no effect
+detected_stuck_1,DV-1 step 5,FAULT,FAULT,no effect
+distance_gain_2,DV-1 step 1,FAULT,FAULT,no effect
+distance_gain_2,DV-1 step 2,FAULT,FAULT,no effect
+distance_gain_2,DV-1 step 3,FAULT,FAULT,no effect
+distance_gain_2,DV-1 step 4,FAULT,FAULT,no effect
+distance_gain_2,DV-1 step 5,FAULT,FAULT,no effect
+distance_stuck_0,DV-1 step 1,FAULT,FAULT,no effect
+distance_stuck_0,DV-1 step 2,FAULT,FAULT,no effect
+distance_stuck_0,DV-1 step 3,FAULT,FAULT,no effect
+distance_stuck_0,DV-1 step 4,FAULT,FAULT,no effect
+distance_stuck_0,DV-1 step 5,FAULT,FAULT,no effect
+age_stuck_0,DV-1 step 1,FAULT,FAULT,no effect
+age_stuck_0,DV-1 step 2,FAULT,FAULT,no effect
+age_stuck_0,DV-1 step 3,FAULT,FAULT,no effect
+age_stuck_0,DV-1 step 4,FAULT,FAULT,no effect
+age_stuck_0,DV-1 step 5,FAULT,FAULT,no effect
+age_gain_10,DV-1 step 1,FAULT,FAULT,no effect
+age_gain_10,DV-1 step 2,FAULT,FAULT,no effect
+age_gain_10,DV-1 step 3,FAULT,FAULT,no effect
+age_gain_10,DV-1 step 4,FAULT,FAULT,no effect
+age_gain_10,DV-1 step 5,FAULT,FAULT,no effect
+dt_stuck_0,DV-1 step 1,FAULT,FAULT,no effect
+dt_stuck_0,DV-1 step 2,FAULT,FAULT,no effect
+dt_stuck_0,DV-1 step 3,FAULT,FAULT,no effect
+dt_stuck_0,DV-1 step 4,FAULT,FAULT,no effect
+dt_stuck_0,DV-1 step 5,FAULT,FAULT,no effect
+speed_stuck_0,DV-2 step 1,FAULT,NO_ACTION,other
+speed_stuck_0,DV-2 step 2,FAULT,NO_ACTION,other
+speed_stuck_0,DV-2 step 3,FAULT,NO_ACTION,other
+speed_stuck_0,DV-2 step 4,FAULT,NO_ACTION,other
+speed_stuck_0,DV-2 step 5,FAULT,FAULT,no effect
+speed_gain_half,DV-2 step 1,FAULT,NO_ACTION,other
+speed_gain_half,DV-2 step 2,FAULT,NO_ACTION,other
+speed_gain_half,DV-2 step 3,FAULT,NO_ACTION,other
+speed_gain_half,DV-2 step 4,FAULT,NO_ACTION,other
+speed_gain_half,DV-2 step 5,FAULT,FAULT,no effect
+speed_gain_1p5,DV-2 step 1,FAULT,FAULT,no effect
+speed_gain_1p5,DV-2 step 2,FAULT,FAULT,no effect
+speed_gain_1p5,DV-2 step 3,FAULT,FAULT,no effect
+speed_gain_1p5,DV-2 step 4,FAULT,FAULT,no effect
+speed_gain_1p5,DV-2 step 5,FAULT,FAULT,no effect
+detected_stuck_0,DV-2 step 1,FAULT,FAULT,no effect
+detected_stuck_0,DV-2 step 2,FAULT,FAULT,no effect
+detected_stuck_0,DV-2 step 3,FAULT,FAULT,no effect
+detected_stuck_0,DV-2 step 4,FAULT,FAULT,no effect
+detected_stuck_0,DV-2 step 5,FAULT,FAULT,no effect
+detected_stuck_1,DV-2 step 1,FAULT,FAULT,no effect
+detected_stuck_1,DV-2 step 2,FAULT,FAULT,no effect
+detected_stuck_1,DV-2 step 3,FAULT,FAULT,no effect
+detected_stuck_1,DV-2 step 4,FAULT,FAULT,no effect
+detected_stuck_1,DV-2 step 5,FAULT,FAULT,no effect
+distance_gain_2,DV-2 step 1,FAULT,FAULT,no effect
+distance_gain_2,DV-2 step 2,FAULT,FAULT,no effect
+distance_gain_2,DV-2 step 3,FAULT,FAULT,no effect
+distance_gain_2,DV-2 step 4,FAULT,FAULT,no effect
+distance_gain_2,DV-2 step 5,FAULT,FAULT,no effect
+distance_stuck_0,DV-2 step 1,FAULT,FAULT,no effect
+distance_stuck_0,DV-2 step 2,FAULT,FAULT,no effect
+distance_stuck_0,DV-2 step 3,FAULT,FAULT,no effect
+distance_stuck_0,DV-2 step 4,FAULT,FAULT,no effect
+distance_stuck_0,DV-2 step 5,FAULT,FAULT,no effect
+age_stuck_0,DV-2 step 1,FAULT,FAULT,no effect
+age_stuck_0,DV-2 step 2,FAULT,FAULT,no effect
+age_stuck_0,DV-2 step 3,FAULT,FAULT,no effect
+age_stuck_0,DV-2 step 4,FAULT,FAULT,no effect
+age_stuck_0,DV-2 step 5,FAULT,FAULT,no effect
+age_gain_10,DV-2 step 1,FAULT,FAULT,no effect
+age_gain_10,DV-2 step 2,FAULT,FAULT,no effect
+age_gain_10,DV-2 step 3,FAULT,FAULT,no effect
+age_gain_10,DV-2 step 4,FAULT,FAULT,no effect
+age_gain_10,DV-2 step 5,FAULT,FAULT,no effect
+dt_stuck_0,DV-2 step 1,FAULT,FAULT,no effect
+dt_stuck_0,DV-2 step 2,FAULT,FAULT,no effect
+dt_stuck_0,DV-2 step 3,FAULT,FAULT,no effect
+dt_stuck_0,DV-2 step 4,FAULT,FAULT,no effect
+dt_stuck_0,DV-2 step 5,FAULT,FAULT,no effect
+speed_stuck_0,DV-3 step 1,FAULT,FAULT,no effect
+speed_stuck_0,DV-3 step 2,FAULT,FAULT,no effect
+speed_stuck_0,DV-3 step 3,FAULT,FAULT,no effect
+speed_stuck_0,DV-3 step 4,FAULT,FAULT,no effect
+speed_stuck_0,DV-3 step 5,FAULT,FAULT,no effect
+speed_stuck_0,DV-3 step 6,NO_ACTION,NO_ACTION,no effect
+speed_stuck_0,DV-3 step 7,NO_ACTION,NO_ACTION,no effect
+speed_stuck_0,DV-3 step 8,NO_ACTION,NO_ACTION,no effect
+speed_stuck_0,DV-3 step 9,BRAKE,NO_ACTION,missed brake
+speed_gain_half,DV-3 step 1,FAULT,FAULT,no effect
+speed_gain_half,DV-3 step 2,FAULT,FAULT,no effect
+speed_gain_half,DV-3 step 3,FAULT,FAULT,no effect
+speed_gain_half,DV-3 step 4,FAULT,FAULT,no effect
+speed_gain_half,DV-3 step 5,FAULT,FAULT,no effect
+speed_gain_half,DV-3 step 6,NO_ACTION,NO_ACTION,no effect
+speed_gain_half,DV-3 step 7,NO_ACTION,NO_ACTION,no effect
+speed_gain_half,DV-3 step 8,NO_ACTION,NO_ACTION,no effect
+speed_gain_half,DV-3 step 9,BRAKE,NO_ACTION,missed brake
+speed_gain_1p5,DV-3 step 1,FAULT,FAULT,no effect
+speed_gain_1p5,DV-3 step 2,FAULT,FAULT,no effect
+speed_gain_1p5,DV-3 step 3,FAULT,FAULT,no effect
+speed_gain_1p5,DV-3 step 4,FAULT,FAULT,no effect
+speed_gain_1p5,DV-3 step 5,FAULT,FAULT,no effect
+speed_gain_1p5,DV-3 step 6,NO_ACTION,NO_ACTION,no effect
+speed_gain_1p5,DV-3 step 7,NO_ACTION,NO_ACTION,no effect
+speed_gain_1p5,DV-3 step 8,NO_ACTION,NO_ACTION,no effect
+speed_gain_1p5,DV-3 step 9,BRAKE,BRAKE,no effect
+detected_stuck_0,DV-3 step 1,FAULT,FAULT,no effect
+detected_stuck_0,DV-3 step 2,FAULT,FAULT,no effect
+detected_stuck_0,DV-3 step 3,FAULT,FAULT,no effect
+detected_stuck_0,DV-3 step 4,FAULT,FAULT,no effect
+detected_stuck_0,DV-3 step 5,FAULT,FAULT,no effect
+detected_stuck_0,DV-3 step 6,NO_ACTION,NO_ACTION,no effect
+detected_stuck_0,DV-3 step 7,NO_ACTION,NO_ACTION,no effect
+detected_stuck_0,DV-3 step 8,NO_ACTION,NO_ACTION,no effect
+detected_stuck_0,DV-3 step 9,BRAKE,NO_ACTION,missed brake
+detected_stuck_1,DV-3 step 1,FAULT,FAULT,no effect
+detected_stuck_1,DV-3 step 2,FAULT,FAULT,no effect
+detected_stuck_1,DV-3 step 3,FAULT,FAULT,no effect
+detected_stuck_1,DV-3 step 4,FAULT,FAULT,no effect
+detected_stuck_1,DV-3 step 5,FAULT,FAULT,no effect
+detected_stuck_1,DV-3 step 6,NO_ACTION,NO_ACTION,no effect
+detected_stuck_1,DV-3 step 7,NO_ACTION,NO_ACTION,no effect
+detected_stuck_1,DV-3 step 8,NO_ACTION,BRAKE,spurious brake
+detected_stuck_1,DV-3 step 9,BRAKE,BRAKE,no effect
+distance_gain_2,DV-3 step 1,FAULT,FAULT,no effect
+distance_gain_2,DV-3 step 2,FAULT,FAULT,no effect
+distance_gain_2,DV-3 step 3,FAULT,FAULT,no effect
+distance_gain_2,DV-3 step 4,FAULT,FAULT,no effect
+distance_gain_2,DV-3 step 5,FAULT,FAULT,no effect
+distance_gain_2,DV-3 step 6,NO_ACTION,NO_ACTION,no effect
+distance_gain_2,DV-3 step 7,NO_ACTION,NO_ACTION,no effect
+distance_gain_2,DV-3 step 8,NO_ACTION,NO_ACTION,no effect
+distance_gain_2,DV-3 step 9,BRAKE,BRAKE,no effect
+distance_stuck_0,DV-3 step 1,FAULT,FAULT,no effect
+distance_stuck_0,DV-3 step 2,FAULT,FAULT,no effect
+distance_stuck_0,DV-3 step 3,FAULT,FAULT,no effect
+distance_stuck_0,DV-3 step 4,FAULT,FAULT,no effect
+distance_stuck_0,DV-3 step 5,FAULT,FAULT,no effect
+distance_stuck_0,DV-3 step 6,NO_ACTION,BRAKE,spurious brake
+distance_stuck_0,DV-3 step 7,NO_ACTION,BRAKE,spurious brake
+distance_stuck_0,DV-3 step 8,NO_ACTION,NO_ACTION,no effect
+distance_stuck_0,DV-3 step 9,BRAKE,BRAKE,no effect
+age_stuck_0,DV-3 step 1,FAULT,FAULT,no effect
+age_stuck_0,DV-3 step 2,FAULT,FAULT,no effect
+age_stuck_0,DV-3 step 3,FAULT,FAULT,no effect
+age_stuck_0,DV-3 step 4,FAULT,FAULT,no effect
+age_stuck_0,DV-3 step 5,FAULT,FAULT,no effect
+age_stuck_0,DV-3 step 6,NO_ACTION,NO_ACTION,no effect
+age_stuck_0,DV-3 step 7,NO_ACTION,NO_ACTION,no effect
+age_stuck_0,DV-3 step 8,NO_ACTION,NO_ACTION,no effect
+age_stuck_0,DV-3 step 9,BRAKE,BRAKE,no effect
+age_gain_10,DV-3 step 1,FAULT,FAULT,no effect
+age_gain_10,DV-3 step 2,FAULT,FAULT,no effect
+age_gain_10,DV-3 step 3,FAULT,FAULT,no effect
+age_gain_10,DV-3 step 4,FAULT,FAULT,no effect
+age_gain_10,DV-3 step 5,FAULT,FAULT,no effect
+age_gain_10,DV-3 step 6,NO_ACTION,FAULT,safe deviation
+age_gain_10,DV-3 step 7,NO_ACTION,FAULT,safe deviation
+age_gain_10,DV-3 step 8,NO_ACTION,FAULT,safe deviation
+age_gain_10,DV-3 step 9,BRAKE,FAULT,safe deviation
+dt_stuck_0,DV-3 step 1,FAULT,FAULT,no effect
+dt_stuck_0,DV-3 step 2,FAULT,FAULT,no effect
+dt_stuck_0,DV-3 step 3,FAULT,FAULT,no effect
+dt_stuck_0,DV-3 step 4,FAULT,FAULT,no effect
+dt_stuck_0,DV-3 step 5,FAULT,FAULT,no effect
+dt_stuck_0,DV-3 step 6,NO_ACTION,FAULT,safe deviation
+dt_stuck_0,DV-3 step 7,NO_ACTION,FAULT,safe deviation
+dt_stuck_0,DV-3 step 8,NO_ACTION,FAULT,safe deviation
+dt_stuck_0,DV-3 step 9,BRAKE,FAULT,safe deviation
