@@ -1,0 +1,13 @@
+TC_ID,REQ_ID,verdict
+TC-01,REQ-01,Passed
+TC-02,REQ-01,Passed
+TC-03,REQ-01,Passed
+TC-04,REQ-01,Passed
+TC-05,REQ-01,Passed
+TC-06,REQ-01,Passed
+TC-11,REQ-02,Passed
+TC-12,REQ-02,Passed
+TC-21,REQ-03,Passed
+TC-22,REQ-03,Passed
+TC-41,REQ-05,Passed
+TC-42,REQ-05,Passed

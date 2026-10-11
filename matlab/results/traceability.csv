@@ -1,0 +1,6 @@
+REQ_ID,implementing_elements,verifying_tests,passed,implementation_status,verification_status
+REQ-01,1,6,6,Implemented,Passed
+REQ-02,1,2,2,Implemented,Passed
+REQ-03,1,2,2,Implemented,Passed
+REQ-04,1,0,0,Implemented,Missing
+REQ-05,1,2,2,Implemented,Passed

@@ -1,0 +1,73 @@
+scenario,TC_ID,REQ_ID,marked_by_links,stale
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-01,REQ-01,1,0
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-02,REQ-01,1,1
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-03,REQ-01,1,1
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-04,REQ-01,1,0
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-05,REQ-01,1,0
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-06,REQ-01,1,0
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-11,REQ-02,1,0
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-12,REQ-02,1,0
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-21,REQ-03,0,0
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-22,REQ-03,0,0
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-41,REQ-05,0,0
+"S1 brake speed 30 -> 35 (REQ-01 and REQ-02 updated)",TC-42,REQ-05,0,0
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-01,REQ-01,1,0
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-02,REQ-01,1,0
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-03,REQ-01,1,0
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-04,REQ-01,1,0
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-05,REQ-01,1,0
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-06,REQ-01,1,0
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-11,REQ-02,1,1
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-12,REQ-02,1,0
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-21,REQ-03,0,0
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-22,REQ-03,0,0
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-41,REQ-05,0,0
+"S2 brake speed 30 -> 25 (REQ-01 and REQ-02 updated)",TC-42,REQ-05,0,0
+"S3 detection range 20 -> 15 m (REQ-01)",TC-01,REQ-01,1,0
+"S3 detection range 20 -> 15 m (REQ-01)",TC-02,REQ-01,1,0
+"S3 detection range 20 -> 15 m (REQ-01)",TC-03,REQ-01,1,0
+"S3 detection range 20 -> 15 m (REQ-01)",TC-04,REQ-01,1,1
+"S3 detection range 20 -> 15 m (REQ-01)",TC-05,REQ-01,1,0
+"S3 detection range 20 -> 15 m (REQ-01)",TC-06,REQ-01,1,0
+"S3 detection range 20 -> 15 m (REQ-01)",TC-11,REQ-02,0,0
+"S3 detection range 20 -> 15 m (REQ-01)",TC-12,REQ-02,0,0
+"S3 detection range 20 -> 15 m (REQ-01)",TC-21,REQ-03,0,0
+"S3 detection range 20 -> 15 m (REQ-01)",TC-22,REQ-03,0,0
+"S3 detection range 20 -> 15 m (REQ-01)",TC-41,REQ-05,0,0
+"S3 detection range 20 -> 15 m (REQ-01)",TC-42,REQ-05,0,0
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-01,REQ-01,0,0
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-02,REQ-01,0,0
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-03,REQ-01,0,0
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-04,REQ-01,0,0
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-05,REQ-01,0,0
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-06,REQ-01,0,0
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-11,REQ-02,0,0
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-12,REQ-02,0,0
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-21,REQ-03,1,0
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-22,REQ-03,1,1
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-41,REQ-05,0,0
+"S4 sensor timeout 200 -> 250 ms (REQ-03)",TC-42,REQ-05,0,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-01,REQ-01,0,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-02,REQ-01,0,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-03,REQ-01,0,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-04,REQ-01,0,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-05,REQ-01,0,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-06,REQ-01,0,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-11,REQ-02,0,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-12,REQ-02,0,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-21,REQ-03,0,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-22,REQ-03,0,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-41,REQ-05,1,0
+"S5 valid speed up to 250 -> 120 km/h (REQ-05)",TC-42,REQ-05,1,0
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-01,REQ-01,1,0
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-02,REQ-01,1,0
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-03,REQ-01,1,0
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-04,REQ-01,1,0
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-05,REQ-01,1,0
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-06,REQ-01,1,0
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-11,REQ-02,0,1
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-12,REQ-02,0,0
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-21,REQ-03,0,0
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-22,REQ-03,0,0
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-41,REQ-05,0,0
+"S6 brake speed 30 -> 25, REQ-02 left unchanged",TC-42,REQ-05,0,0
